@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little Birthday Surprise 🎀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="floating-decor decor-one">✿</div>
+  <div class="floating-decor decor-two">♡</div>
+  <div class="floating-decor decor-three">✦</div>
+  <div class="floating-decor decor-four">🎀</div>
+
+  <button id="musicButton" class="music-button" onclick="toggleMusic()">
+    ♫ Play music
+  </button>
+
+  <audio id="birthdayMusic" loop>
+    <source src="music/birthday-song.mp3" type="audio/mpeg">
+  </audio>
+
+  <main class="site-card">
+
+    <!-- PAGE 1 -->
+    <section class="page active" id="page1">
+      <span class="eyebrow">A tiny surprise for you ✨</span>
+      <img class="shinchan" src="images/shinshan.png" alt="Happy Shinchan">
+      <h1>Meenammaa....</h1>
+      <p class="main-message">I made something for you....</p>
+      <p class="sub-message">Will you take a little look? 👀</p>
+
+      <div class="button-row">
+        <button class="btn primary" onclick="goToPage(3)">YES! 💗</button>
+        <button class="btn secondary" onclick="goToPage(2)">NO 🙄</button>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="page" id="page2">
+      <span class="eyebrow">Excuse me?! 😤</span>
+      <img class="shinchan" src="images/shinshan-angry.png" alt="Angry Shinchan">
+      <h1>HOW DARE YOU!!?</h1>
+      <p class="main-message">You can't say no that easily! 😭</p>
+      <button class="btn primary" onclick="goToPage(1)">TRY AGAIN ↻</button>
+    </section>
+
+    <!-- PAGE 3 -->
+    <section class="page" id="page3">
+      <span class="eyebrow">One tiny question... 🤨</span>
+      <img class="shinchan" src="images/shinshan-thinking.png" alt="Thinking Shinchan">
+      <h1>Are you really excited?</h1>
+      <p class="main-message">Be honest now! 👀</p>
+
+      <div class="button-row">
+        <button class="btn primary" onclick="goToPage(4)">YES, OBVIOUSLY! 💕</button>
+        <button class="btn secondary" onclick="goToPage(4)">YES YES, SHOW ME! ✨</button>
+      </div>
+    </section>
+
+    <!-- PAGE 4: AGE VERIFICATION -->
+    <section class="page" id="page4">
+      <span class="eyebrow">One last check 🔎</span>
+      <img class="shinchan" src="images/shinshan-doubtful.png" alt="Doubtful Shinchan">
+      <h1>AGE VERIFICATION</h1>
+      <p class="main-message">Enter your age to unlock the surprise 🎀</p>
+
+      <form class="age-form" onsubmit="verifyAge(event)">
+        <input
+          id="ageInput"
+          type="number"
+          min="1"
+          max="120"
+          placeholder="Enter your age"
+          aria-label="Enter your age"
+          required
+        >
+        <button class="btn primary" type="submit">VERIFY ✨</button>
+      </form>
+
+      <p id="ageFeedback" class="sub-message" role="status"></p>
+
+      <button
+        id="ageContinueButton"
+        class="btn primary"
+        type="button"
+        onclick="goToPage(5)"
+        hidden
+      >
+        CONTINUE TO YOUR SURPRISE 🎁
+      </button>
+    </section>
+
+    <!-- PAGE 5: SECRET GIFTS -->
+    
+<section class="page" id="page5">
+
+  <!-- Gift selection screen: hidden when a gift opens -->
+  <div id="giftSelection">
+    <span class="eyebrow">Made with a little love 💌</span>
+
+    <img
+      class="shinchan"
+      src="images/shinshan-surprise.png"
+      alt="Surprised Shinchan"
+    >
+
+    <h1>Each gift has something for you....</h1>
+
+    <div class="gift-grid" id="giftChoices">
+      <button
+        class="gift-card"
+        onclick="openGift('birthday')"
+        aria-label="Open birthday gift"
+      >
+        <span class="gift-emoji">🎁</span>
+      </button>
+
+      <button
+        class="gift-card"
+        onclick="openGift('cake')"
+        aria-label="Open cake gift"
+      >
+        <span class="gift-emoji">🎁</span>
+      </button>
+
+      <button
+        class="gift-card"
+        onclick="openGift('memories')"
+        aria-label="Open memories gift"
+      >
+        <span class="gift-emoji">🎁</span>
+      </button>
+    </div>
+
+    <button
+      class="btn primary"
+      id="continueAfterGifts"
+      onclick="goToPage(6)"
+      hidden
+      style="display: none;"
+    >
+      CONTINUE TO YOUR SURPRISE 💌
+    </button>
+  </div>
+
+  <!-- Gift 1: Birthday wishes -->
+  <div class="gift-content" id="gift-birthday">
+    <img
+      class="shinchan"
+      src="images/shinshan-love.png"
+      alt="Shinchan with love"
+    >
+
+    <h2>HAPPY BIRTHDAY MEEENAMMAAAA 🎂💗</h2>
+
+    <img
+      class="friend-photo"
+      src="images/friend.jpg"
+      alt="Birthday girl"
+    >
+
+    <p class="birthday-note">
+      Happy Birthday! 🥳💖<br><br>
+      I hope this new year of your life brings you lots of happiness,
+      good health, exciting opportunities and beautiful memories.
+      Keep smiling, keep being yourself, and may the things you wish
+      for slowly find their way to you. Have the loveliest birthday! 🎂✨
+    </p>
+
+    <button class="btn primary" onclick="returnToGifts()">
+      BACK TO GIFTS 🎁
+    </button>
+  </div>
+
+  <!-- Gift 2: Make a wish -->
+  
+<div class="gift-content" id="gift-cake">
+  <img
+    class="shinchan"
+    src="images/shinshan-cake.png"
+    alt="Shinchan with cake"
+  >
+
+  <h2>MAKE A WISH!! 🎂</h2>
+
+  <div class="cake-picture" id="wishCake" role="img" aria-label="Birthday cake with lit candles">
+    <span class="candle-flames" id="candleFlames">🕯️ 🕯️ 🕯️</span>
+    <span class="cake-emoji" id="cakeEmoji">🎂</span>
+  </div>
+
+  <h3 id="blowMessage" class="blow-message">Blow in! 💨</h3>
+
+  <div id="wishCountdown" class="wish-countdown" aria-live="polite">3</div>
+
+  <p id="wishMessage" class="sub-message">
+    Close your eyes, make a wish! 💗✨
+  </p>
+
+  <button class="btn primary" onclick="returnToGifts()">
+    BACK TO GIFTS 🎁
+  </button>
+</div>
+
+
+  <!-- Gift 3: Memories -->
+  <div class="gift-content" id="gift-memories">
+    <img
+      class="shinchan"
+      src="images/shinshan-love2.png"
+      alt="Shinchan sending love"
+    >
+
+    <h2>MEMORIES 💗</h2>
+
+    <p class="sub-message">
+      Little moments worth keeping. 📸
+    </p>
+
+    <div class="memory-grid">
+      <img src="images/memory1.jpg" alt="Memory 1">
+      <img src="images/memory2.jpg" alt="Memory 2">
+      <img src="images/memory3.jpg" alt="Memory 3">
+      <img src="images/memory4.jpg" alt="Memory 4">
+      <img src="images/memory5.jpg" alt="Memory 5">
+    </div>
+
+    <button class="btn primary" onclick="returnToGifts()">
+      BACK TO GIFTS 🎁
+    </button>
+  </div>
+
+</section>
+
+    <!-- PAGE 6 -->
+    <section class="page" id="page6">
+      <span class="eyebrow">A wish for your new year 🌷</span>
+      <div class="emoji-decoration">✨ 💗 🌼 ✨</div>
+      <img class="shinchan" src="images/shinshan-cute.png" alt="Cute Shinchan">
+
+      <h1 class="big-wish">
+        MAY ALL THE GOOD THINGS YOU'VE BEEN WAITING FOR FINALLY FIND YOU THIS YEAR
+      </h1>
+
+      <div class="emoji-decoration">🦋 🎀 🌸 💫</div>
+      <p class="sub-message">You deserve a year full of lovely surprises. 💕</p>
+
+      <button class="btn primary" onclick="goToPage(7)">ONE LAST THING... 💌</button>
+    </section>
+
+    <!-- PAGE 7 -->
+    <section class="page" id="page7">
+      <span class="eyebrow">And finally... 🥁</span>
+      <img class="shinchan" src="images/shinshan-admiring.png" alt="Admiring Shinchan">
+
+      <h1>All this by a beautiful lady...</h1>
+      <p class="main-message">i.e. none other than <strong>RISHI</strong> 💅🏻💗</p>
+      <div class="emoji-decoration">🎀 💖 🌷 😁</div>
+
+      <div class="rishi-grid">
+        <img src="images/rishi1.jpg" alt="Rishi photo 1">
+        <img src="images/rishi2.jpg" alt="Rishi photo 2">
+        <img src="images/rishi3.jpg" alt="Rishi photo 3">
+        <img src="images/rishi4.jpg" alt="Rishi photo 4">
+        <img src="images/rishi5.jpg" alt="Rishi photo 5">
+        <img src="images/rishi6.jpg" alt="Rishi photo 6">
+      </div>
+
+      <p class="sub-message">That's the end of this little surprise. Happy Birthday again! 💗</p>
+      <button class="btn primary" onclick="restartWebsite()">START AGAIN ↻</button>
+    </section>
+
+  </main>
+
+  <footer>made with 💗, confetti and a little Shinchan energy</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
